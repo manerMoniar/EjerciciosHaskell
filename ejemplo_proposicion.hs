@@ -25,9 +25,26 @@ numero18 = logEquiv2 (\ p q -> not(p /= q))
 numero19 = logEquiv2 (\ p q -> not(p) == not(q))
 					 (\ p q -> p == q)
 
-numero20 = logEquiv3 (\ p q r -> (p <=q ) && (p <= r))
+numero20 = logEquiv3 (\ p q r -> (p <= q ) && (p <= r))
 					 (\ p q r -> p <= (q && r))
 
+numero21 = logEquiv3 (\ p q r -> (p <= r ) && (q <= r))
+					 (\ p q r -> (p || q) <= r)
+
+numero22 = logEquiv3 (\ p q r -> (p <= q ) || (p <= r))
+					 (\ p q r -> p <= (q || r))
+
+numero23 = logEquiv3 (\ p q r -> (p <= r ) || (q <= r))
+					 (\ p q r -> (p && q) <= r)
+
+numero24 = logEquiv3 (\ p q r -> not (p) <= (q <= r ) )
+					 (\ p q r -> q <= (p || r))
+
+numero25 = logEquiv2 (\ p q -> (p == q ))
+					 (\ p q -> (p <= q) && (q <= p))
+
+numero26 = logEquiv2 (\ p q -> (p == q ))
+					 (\ p q -> not (p) == not (q))
 main =  do 	
 	putStr "Ejercicio 15: "
 	print numero15
@@ -41,3 +58,15 @@ main =  do
 	print numero19
 	putStr "Ejercicio 20: "
 	print numero20
+	putStr "Ejercicio 21: "
+	print numero21
+	putStr "Ejercicio 22: "
+	print numero22
+	putStr "Ejercicio 23: "
+	print numero23
+	putStr "Ejercicio 24: "
+	print numero24
+	putStr "Ejercicio 25: "
+	print numero25
+	putStr "Ejercicio 26: "
+	print numero26
