@@ -9,6 +9,11 @@ logEquiv3 bf1 bf2 =
 									  q <- [True,False],
 									  r <- [True,False]]
 
+logEquivI :: (Int -> Int -> Int -> Int) -> (Int -> Int -> Int -> Int) -> Bool
+logEquivI bf1 bf2 = 
+	and [(bf1 a b c) == (bf2 a b c) | a <- [0, 1, 2],
+									  b <- [0, 1, 2],
+									  c <- [0, 1, 2]]
 
 numero15 = logEquiv3 (\p q r -> (p <= q) <= r)
 					 (\ a b c -> a <= ( b <= c))
@@ -45,7 +50,10 @@ numero25 = logEquiv2 (\ p q -> (p == q ))
 
 numero26 = logEquiv2 (\ p q -> (p == q ))
 					 (\ p q -> not (p) == not (q))
-main =  do 	
+
+proClase = logEquivI (\ a b c -> max (max a b) c) (\a b c -> max a (max b c))
+
+main =  do 		
 	putStr "Ejercicio 15: "
 	print numero15
 	putStr "Ejercicio 16: "
@@ -70,3 +78,5 @@ main =  do
 	print numero25
 	putStr "Ejercicio 26: "
 	print numero26
+	putStr "Demostracion por casos: "
+	print proClase
