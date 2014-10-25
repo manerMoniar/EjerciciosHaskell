@@ -1,4 +1,3 @@
-import Data.List
 
 ultimo :: [a] -> a
 ultimo [x] = x
@@ -26,14 +25,12 @@ powerList [] = [[]]
 powerList (x:xs) = (powerList xs) ++ (map (x:) (powerList xs))
 
 
-validPotencia :: [a] -> [a]-> Bool
-validPotencia [] = False
-validPotencia b | length  == 2 ^ length xs = True
-				| otherwise = False
-
+validPotencia :: Int -> [b] -> Bool
+validPotencia n [] = False
+validPotencia n b = 2 ^ n == length b
 
 main = do
-	let a = [1,2,3]
-	print(powerList a)
-	let b = subsets a
-	print(validPotencia a b)
+	let a = [1,2,3]	
+	let n = length a
+	let p = powerList a
+	print (validPotencia n p)
